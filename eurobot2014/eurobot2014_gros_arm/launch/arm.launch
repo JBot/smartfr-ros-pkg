@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <!-- The semantic description that corresponds to the URDF -->
+  <param name="robot_description_semantic" textfile="$(find gros_moveit_config)/config/indomptable.srdf" />
+
+  <!-- Load to the parameter server yaml files -->
+  <group ns="robot_description_planning">
+    <rosparam command="load" file="$(find gros_moveit_config)/config/joint_limits.yaml"/>
+  </group>
+
+
+
+  <node name="GROS_arm_manager" pkg="eurobot2014_gros_arm" type="arm_manager" respawn="false" output="screen">
+    <rosparam command="load" file="$(find gros_moveit_config)/config/kinematics.yaml"/>
+    
+    <remap from="/ROBOT/action" to="/GROS/action" />
+    <remap from="/ROBOT/firepose" to="/GROS/firepose" />
+    <remap from="/ROBOT/fruitcolor" to="/GROS/fruitcolor" />
+    <remap from="/ROBOT/alpha_ros" to="/GROS/alpha_ros" />
+    <remap from="/ROBOT/delta_ros" to="/GROS/delta_ros" />
+    <remap from="/ROBOT/grip" to="/GROS/grip" />
+    <remap from="/ROBOT/lpump" to="/GROS/lpump" />
+    <remap from="/ROBOT/rpump" to="/GROS/rpump" />
+    <remap from="/ROBOT/done" to="/GROS/arm_done" />
+  </node>
+
+
+
+</launch>

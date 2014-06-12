@@ -1,0 +1,158 @@
+Rlink1_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: Rarm1_joint
+    joint_speed: 1.17
+    motor:
+        id: 1
+        init: 512
+        min: 0
+        max: 1023
+
+Rlink2_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: Rarm2_joint
+    joint_speed: 1.17
+    motor:
+        id: 2
+        init: 512
+        min: 0
+        max: 1023
+
+Rlink3_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: Rarm3_joint
+    joint_speed: 1.17
+    motor:
+        id: 18
+        init: 512
+        min: 0
+        max: 1023
+
+Rlink4_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: Rarm4_joint
+    joint_speed: 1.17
+    motor:
+        id: 4
+        init: 512
+        min: 0
+        max: 1023
+
+Rlink5_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: Rarm5_joint
+    joint_speed: 1.17
+    motor:
+        id: 5
+        init: 512
+        min: 0
+        max: 1023
+
+Llink1_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: Llink1_joint
+    joint_speed: 1.17
+    motor:
+        id: 6
+        init: 512
+        min: 0
+        max: 1023
+
+Llink2_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: Llink2_joint
+    joint_speed: 1.17
+    motor:
+        id: 7
+        init: 512
+        min: 0
+        max: 1023
+
+Llink3_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: Llink3_joint
+    joint_speed: 1.17
+    motor:
+        id: 8
+        init: 512
+        min: 0
+        max: 1023
+
+Llink4_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: Llink4_joint
+    joint_speed: 1.17
+    motor:
+        id: 9
+        init: 512
+        min: 0
+        max: 1023
+
+Llink5_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: Llink5_joint
+    joint_speed: 1.17
+    motor:
+        id: 10
+        init: 512
+        min: 0
+        max: 1023
+
+
+fruits_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: fruits_joint
+    joint_speed: 3
+    motor:
+        id: 13
+        init: 512
+        min: 0
+        max: 1023
+
+
+laser_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: laser_joint
+    joint_speed: 3
+    motor:
+        id: 15
+        init: 512
+        min: 0
+        max: 1023
+
