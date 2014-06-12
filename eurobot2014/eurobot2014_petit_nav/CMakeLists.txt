@@ -1,22 +1,25 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(eurobot2014_petit_ai)
+project(eurobot2014_petit_nav)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  actionlib
   common_smart_nav
   geometry_msgs
   move_base
+  move_base_msgs
   nav_msgs
   roscpp
   sensor_msgs
   std_msgs
   tf
+  visualization_msgs
 )
 
 ## System dependencies are found with CMake's conventions
-# find_package(Boost REQUIRED COMPONENTS system)
+find_package(Boost REQUIRED COMPONENTS system thread)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -72,7 +75,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate added messages and services with any dependencies listed here
 # generate_messages(
 #   DEPENDENCIES
-#   geometry_msgs#   nav_msgs#   sensor_msgs#   std_msgs
+#   geometry_msgs#   move_base_msgs#   nav_msgs#   sensor_msgs#   std_msgs#   visualization_msgs
 # )
 
 ###################################
@@ -86,9 +89,9 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES eurobot2014_petit_ai
-#  CATKIN_DEPENDS common_smart_nav geometry_msgs move_base nav_msgs roscpp sensor_msgs std_msgs tf
-#  DEPENDS system_lib
+#  LIBRARIES eurobot2014_petit_nav
+ CATKIN_DEPENDS actionlib common_smart_nav geometry_msgs move_base move_base_msgs nav_msgs roscpp sensor_msgs std_msgs tf visualization_msgs
+ DEPENDS system_lib
 )
 
 ###########
@@ -103,21 +106,29 @@ include_directories(
 )
 
 ## Declare a cpp library
-# add_library(eurobot2014_petit_ai
-#   src/${PROJECT_NAME}/eurobot2014_petit_ai.cpp
+# add_library(eurobot2014_petit_nav
+#   src/${PROJECT_NAME}/eurobot2014_petit_nav.cpp
 # )
 
 ## Declare a cpp executable
-# add_executable(eurobot2014_petit_ai_node src/eurobot2014_petit_ai_node.cpp)
+add_executable(petit_drive_roboclaw src/petit_drive_roboclaw.cpp)
+add_executable(petit_init_pose src/petit_init_pose.cpp)
+add_executable(petit_odom src/petit_odom.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
-# add_dependencies(eurobot2014_petit_ai_node eurobot2014_petit_ai_generate_messages_cpp)
+# add_dependencies(eurobot2014_petit_nav_node eurobot2014_petit_nav_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(eurobot2014_petit_ai_node
-#   ${catkin_LIBRARIES}
-# )
+target_link_libraries(petit_drive_roboclaw
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(petit_init_pose
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(petit_odom
+  ${catkin_LIBRARIES}
+)
 
 #############
 ## Install ##
@@ -134,11 +145,11 @@ include_directories(
 # )
 
 ## Mark executables and/or libraries for installation
-# install(TARGETS eurobot2014_petit_ai eurobot2014_petit_ai_node
+install(TARGETS petit_drive_roboclaw petit_init_pose petit_odom
 #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-#   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
 ## Mark cpp header files for installation
 # install(DIRECTORY include/${PROJECT_NAME}/
@@ -149,7 +160,15 @@ include_directories(
 
 ## Mark other files for installation (e.g. launch and bag files, etc.)
 install(FILES
-  launch/ai.launch
+  launch/hector.launch
+  launch/init.launch
+  launch/move_base_groovy.launch
+  launch/move_base.launch
+  launch/move_base_modif.launch
+  launch/sensors.launch
+  launch/test.launch
+  launch/nav_params_groovy.yaml
+  launch/nav_params.yaml
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
 )
 
@@ -158,7 +177,7 @@ install(FILES
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_eurobot2014_petit_ai.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_eurobot2014_petit_nav.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
