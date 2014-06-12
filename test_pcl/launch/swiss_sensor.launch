@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<launch>
+	<master auto="start"/>
+
+	<node pkg="swissranger_camera" type="swissranger_camera" name="swissranger" output="screen" respawn="false">
+    		<param name="frame_id" value="camera" />
+    		<param name="auto_exposure" value="0" />
+    		<param name="integration_time" value="500" />
+    		<param name="modulation_freq" value="9" />
+    		<param name="ether_addr" value="192.168.1.42" />
+  	</node>
+
+
+
+	<node pkg="test_pcl" type="swiss_pose_broadcaster" respawn="false" name="SWISS_broadcaster" output="screen">
+	</node>
+
+	<node pkg="tf" type="static_transform_publisher" respawn="false" name="SWISS_static_broadcaster" output="screen" args="0 0 0 1.57 3.14 1.57 /camera_link /camera 10">
+	</node>
+
+
+
+</launch>
+

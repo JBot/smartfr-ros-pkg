@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<launch>
+	<master auto="start"/>
+
+	<param name="voxel_size_x" type="double" value="0.025" /> 
+	<param name="voxel_size_y" type="double" value="0.025" /> 
+	<param name="voxel_size_z" type="double" value="0.025" /> 
+
+	<node pkg="test_pcl" type="swiss_filter" respawn="false" name="SWISS_filter" output="screen">
+		<param name="enable_paththrough" type="bool" value="true" /> 
+		<param name="enable_sor1" type="bool" value="true" /> 
+		<param name="enable_planar_seg" type="bool" value="true" /> 
+		<param name="enable_sor2" type="bool" value="false" /> 
+		<param name="enable_normal" type="bool" value="true" /> 
+		<param name="enable_planar_proj" type="bool" value="false" /> 
+		<param name="enable_ror" type="bool" value="true" /> 
+
+		<param name="z_min" type="double" value="0.20" /> 
+		<param name="sor_filter" type="int" value="100" /> <!-- 20 -->
+		<param name="distance_tresh" type="double" value="0.06" /> <!-- Planar seg -->
+		<param name="max_iterations" type="int" value="300" /> <!-- Planar seg -->
+		<param name="sor_filter2" type="int" value="15" /> 
+		<param name="normal_radius" type="double" value="0.07" /> 
+		<param name="normal_z_max" type="double" value="0.3" /> <!-- Normal Z max -->
+		<param name="pt_x" type="double" value="3.0" /> 
+		<param name="pt_y" type="double" value="0.75" /> 
+		<param name="min_neigh" type="int" value="3" /> 
+		<param name="radius_ror" type="double" value="0.03" /> 
+	</node>
+
+</launch>
+
